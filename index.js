@@ -34,6 +34,11 @@ async function run() {
         const result = await cursor.toArray()
         res.send(result);
       });
+      app.get("/touristSpotSort",async(req,res)=>{
+        const cursor = spotCollection.find().sort({"cost":1})
+        const result = await cursor.toArray()
+        res.send(result)
+      })
 
      app.post("/touristSpot",async(req,res)=>{
         const spot = req.body;
