@@ -43,6 +43,14 @@ async function run() {
         res.send(result);
       });
 
+      app.get("/touristSpotList/:email",async (req, res) => {
+        const email = req.params.email;
+        const query ={"email":email}
+        const cursor = spotCollection.find(query)
+        const result = await cursor.toArray()
+        res.send(result);
+      });
+
       app.get("/touristSpotSort",async(req,res)=>{
         const cursor = spotCollection.find().sort({"cost":1})
         const result = await cursor.toArray()
