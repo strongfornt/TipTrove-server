@@ -40,6 +40,14 @@ async function run() {
         const result = await cursor.toArray()
         res.send(result);
       });
+      app.get("/country/:country",async (req, res) => {
+        const country = req.params.country;
+        const query ={"country":country}
+        const cursor = spotCollection.find(query)
+        const result = await cursor.toArray()
+        res.send(result);
+      });
+      
       app.get("/touristSpot/:id",async (req, res) => {
         const id = req.params.id;
         const query ={_id:new ObjectId(id)}
